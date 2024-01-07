@@ -12,6 +12,8 @@ export const stripeWebhookHandler = async (req: express.Request, res: express.Re
   const body = webhookRequest.rawBody;
   const signature = req.headers["stripe-signature"] || "";
 
+  console.log("Webhook running");
+
   let event;
   try {
     event = stripe.webhooks.constructEvent(body, signature, process.env.STRIPE_WEBHOOK_SECRET || "");
